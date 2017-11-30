@@ -13,10 +13,11 @@ a fully `Richardson Maturity Model Level 3 <https://martinfowler.com/articles/ri
     introduction
     skipper
     skeleton
+    zf-oauth2-doctrine/index
+    zf-oauth2-doctrine-console/index
+    
     about
     authentication/index
     authorization/index
-    zf-oauth2-doctrine/index
-    zf-oauth2-doctrine-console/index
     zf-doctrine-hydrator/index
     zf-doctrine-querybuilder/index
