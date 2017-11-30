@@ -45,26 +45,26 @@ config/autoload/local.php
 You'll need to create a configuration for Doctrine in your local.php.  This file is used so each deployment can have independent
 configuration.  Here is an example file::
 
-	<?php
+    <?php
 
-	return array(
-		'doctrine' => array(
-			'connection' => array(
-				'orm_default' => array(
-					'driverClass' => 'Doctrine\\DBAL\\Driver\\PDOMySql\\Driver',
-					'params' => array(
-						'user' => 'dbuser',
-						'password' => '123',
-						'host' => 'mysql',
-						'dbname' => 'database',
-						'port' => '3306',
-						'charset' => 'utf8',
-						'collate' => 'utf8_general_ci',
-					),
-				),
-			),
-		),
-	);
+    return array(
+        'doctrine' => array(
+            'connection' => array(
+                'orm_default' => array(
+                    'driverClass' => 'Doctrine\\DBAL\\Driver\\PDOMySql\\Driver',
+                    'params' => array(
+                        'user' => 'root',
+                        'password' => '123',
+                        'host' => 'mysql',
+                        'dbname' => 'etreedb',
+                        'port' => '3306',
+                        'charset' => 'utf8',
+                        'collate' => 'utf8_general_ci',
+                    ),
+                ),
+            ),
+        ),
+    );
 
 
 
