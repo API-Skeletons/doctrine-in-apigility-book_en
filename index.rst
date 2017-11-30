@@ -10,13 +10,13 @@ a fully `Richardson Maturity Model Level 3 <https://martinfowler.com/articles/ri
 .. toctree::
     :caption: Table of Contents
 
+    about
     introduction
     skipper
     skeleton
     zf-oauth2-doctrine/index
     zf-oauth2-doctrine-console/index
     
-    about
     authentication/index
     authorization/index
     zf-doctrine-hydrator/index
