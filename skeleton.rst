@@ -67,7 +67,20 @@ configuration.  Here is an example file::
     );
 
 
+Export Metadata and Create Entities
+-----------------------------------
+
+For a brand new ERD export the XML to the ``module/Db/config/orm`` directory then run::
+
+  php public/index.php orm:generate-entities module/Db/src
+
+and  your PHP skeleton code will be done.  
 
 
+Migrations and Fixtures
+-----------------------
+
+This is a new topic to many developers so I'm including this special note to you, reader, to become familiar with them.
+`migrations <https://github.com/doctrine/migrations>`_ and `fixtures <https://github.com/API-Skeletons/zf-doctrine-data-fixture>`_
 
   
