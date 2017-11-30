@@ -24,7 +24,7 @@ with this tool.  To help design your ORM `Skipper <https://skipper18.com>`_ is s
 
 You can use Doctrine in Apigility to serve pieces of your schema by filtering with hydrator strategies or you can
 serve your entire schema in an "Open-schema API" where relationships between entities are fully explored in the HAL
-_embedded data.
+``_embedded`` data.
 
 If you're familiar with the benefits of ORM and will use it in your project and you require a fully-fledged
 API engine than this API strategy may what you're looking for.
