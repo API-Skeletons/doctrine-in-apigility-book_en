@@ -11,6 +11,7 @@ a fully `Richardson Maturity Model Level 3 <https://martinfowler.com/articles/ri
     :caption: Table of Contents
 
     introduction
+    skipper
     about
     authentication/index
     authorization/index
