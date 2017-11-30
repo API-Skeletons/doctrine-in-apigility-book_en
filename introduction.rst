@@ -4,20 +4,23 @@ Introduction
 The landscape of API strategies grows every day.  In the field of PHP there are
 strategies from simple REST-only resources to fully
 `Richardson Maturity Model Level 3 <https://martinfowler.com/articles/richardsonMaturityModel.html>`_
-API engines.  Apigility falls into the Level 3 category.
+API engines.  Apigility falls into the Level 3 category.  As a contributing author of Apigility and the primary
+author of Doctrine in Apigility I've designed a method to serve ORM data though an API in a white-gloved approach 
+to handling the data. 
 
-An API will serve data and Doctrine in Apigility tries, at it's core, to map Doctrine entities
-to API resources.  So a Doctrine enabled resource in Apigility will provide GET, POST, PUT, PATCH, and DELETE.
-It also enables the ORM entity relationships to embed related data in a HAL (Hypertext Application Language)
-response.  This allows complex joins between entities to be represented in the API response.
+What do I mean by a "white-gloved approch"?  Thanks to the large number of open source libraries for Zend Framework
+and Apigility the direct manipulation of data is not usually necessary.  Certainly there will be times you'll want to 
+add a user to an entity before it is persisted but the majority of validation and filtering is handled inside Apigility.
+Doctrine is a powerful ORM and the integration with Apigility is very clean when implemented correctly.  This book will 
+instruct you how to do just that.
 
 
 When should you use Doctrine in Apigility?
 ------------------------------------------
 
-When you have a Doctrine project with properly mapped associations, metadata, between entities Doctrine in Apigility
+When you have a Doctrine project with properly mapped associations (metadata) between entities Doctrine in Apigility
 will give you a powerful head-start toward building an API.  Correct metadata is absolutly core to building an API
-with this tool.  To help design your ORM `Skipper <https://skipper18.com>`_ is strongly recommended.
+with this tool.  To help design your ORM `Skipper <https://skipper18.com>`_ is strongly recommended.  See `ORM Modeling with Skipper <skipper>`_
 
 You can use Doctrine in Apigility to serve pieces of your schema by filtering with hydrator strategies or you can
 serve your entire schema in an "Open-schema API" where relationships between entities are fully explored in the HAL
@@ -25,3 +28,55 @@ _embedded data.
 
 If you're familiar with the benefits of ORM and will use it in your project and you require a fully-fledged
 API engine than this API strategy may what you're looking for.
+
+
+What makes Doctrine in Apigility different?
+-------------------------------------------
+
+Because Doctrine is an object relational mapper the relationships between entities are part of the Doctrine metadata.
+So when a Doctrine entity is `extracted with a hydrator <hydration>`_ the relationships are pulled from the entity too and included in the
+`HAL <hypertext application language>`_ response as ``_embedded`` data.  By using hydration strategies you may include just a 
+link to the canonical resource or embed the entire resource and in turn embed its resources.
+
+Consider this response to a request for an Artist::
+
+    {
+        "id": 1,
+        "name": "Soft Cell",
+        "_embedded": {
+            "album": [
+                {
+                    "id": 1,
+                    "name": "Non-Stop Erotic Cabaret",
+                    "_embedded": {
+                        "artist": {
+                            "_links": {
+                                "self": "https://api/artist/1"
+                            }
+                        },
+                        "song": {
+                            "_links": {
+                                "self": "https://api/song?filter%5B0%5D%5Bfield%5D=album&filter%5B0%5D%5Btype%5D=eq&filter%5B0%5D%5Bvalue%5D=1"
+                            }
+                        }
+                    },
+                    "_links": {
+                        "self": "https://api/album/1"
+                    }
+                }
+            ],
+        },
+        "_links": {
+            "self": "https://api/artist/1"
+        }
+    }
+
+The ``album`` collection for this artist is returned because a ``CollectionExtract`` hydration strategy was used.
+Inside the ``album``, instead of including every ``song``, just a link to the collection filtered by the ``album``
+is included.  This way a consumer of the API is directed how to fetch the data when it is not included.
+
+Each album entry has an embedded ``artist`` but this would cause a cyclic reference so an ``EntityLink`` hydrator is 
+used to just give a link to the ``artist`` from within an ``album``.  This is common when using the ``CollectionExtract`` hydrator.
+
+Within each API response when using Doctrine in Apigility there will never be a dead-end.  Any reference to an entity or collection
+will be handled by a hydrator thereby making the API fully implement HATEOAS.
