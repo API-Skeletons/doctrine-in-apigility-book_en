@@ -8,7 +8,7 @@ API engines.  Apigility falls into the Level 3 category.  As a contributing auth
 author of Doctrine in Apigility I've designed a method to serve ORM data though an API in a white-gloved approach 
 to handling the data. 
 
-What do I mean by a "white-gloved approch"?  Thanks to the large number of open source libraries for Zend Framework
+What do I mean by a "white-gloved approach"?  Thanks to the large number of open source libraries for Zend Framework
 and Apigility the direct manipulation of data is not usually necessary.  Certainly there will be times you'll want to 
 add a user to an entity before it is persisted but the majority of validation and filtering is handled inside Apigility.
 Doctrine is a powerful ORM and the integration with Apigility is very clean when implemented correctly.  This book will 
