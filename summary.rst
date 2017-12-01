@@ -22,7 +22,8 @@ The design for Doctrine in Apigility expects a two-layered security strategy.  T
 and the second layer is Query Providers.  ACL Authorization is handled by Apigility and Query Providers are handled by Doctrine in Apigility.
 
 
-### ACL Security
+ACL Security
+------------
 
 Doctrine in Apigility expects you to implement the Authorization created with 
 `zfcampus/zf-mvc-auth <https://github.com/zfcampus/zf-mvc-auth>`_ for your project.  This probably means implementing ACL in your 
@@ -30,7 +31,8 @@ application and assigning roles to the differnet HTTP verbs each role can access
 to an administrator.  This is explained in detail in `Authorization <authorization>`_.
 
 
-### Query Provider Security
+Query Provider Security
+-----------------------
 
 For any resource where the access to the resource is limited a Query Provider should be created.  Query Providers are small classes
 which return a Doctrine QueryBuilder object.  By default the QueryBuilder contains only the entity assigned to the resource the user
