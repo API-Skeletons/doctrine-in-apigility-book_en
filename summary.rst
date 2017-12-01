@@ -57,7 +57,7 @@ may read::
             $queryBuilder
                 ->select('row')
                 ->from($entityClass, 'row')
-                ->andWhere(row.user = :user)
+                ->andWhere($queryBuilder->expr()->eq('row.user', ':user'))
                 ->setParameter('user', $this->getAuthentication()->getIdentity()->getUser())
                 ;
 
@@ -80,8 +80,8 @@ More complicated examples **rely on your metadata being complete**.  If your met
         ;
 
 
-HATEOAS, Hydrators, and Hydrator Strategies & Filters
--------------------------------------------
+Hydrators, and Hydrator Strategies & Filters
+--------------------------------------------
 
 If you're unfamiliar with hydrators 
 `read Zend Framework's manual on Hydrators <https://framework.zend.com/manual/2.4/en/modules/zend.stdlib.hydrator.html>`_ 
@@ -151,3 +151,5 @@ Next are Hydrator Strategies.  The module `API-Skeletons/zf-doctrine-hydrator <h
 provides all the hydrator strategies you will need.  More information on these strategies in `hydration <hydration>`_.
 
 
+HATEOAS
+-------
