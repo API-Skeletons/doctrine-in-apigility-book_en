@@ -89,7 +89,7 @@ then
 `read Doctrine's manual on Hydrators <https://github.com/doctrine/DoctrineModule/blob/master/docs/hydrator.md>`_
 
 Because Doctrine hydrators can extract relationships the default response from a Doctrine in Apigility Resource will include an ``_embedded`` section with the extracted entities and their ``_embedded`` and so on.  **For special cases only** does 
-`zfcampus/zf-hal <https://github.com/zfcampus/zf-hal>`_ have a max_depth parameter <https://apigility.org/documentation/modules/zf-hal#key-metadata_map>`_.  This special case is not intended to correct issues with HATEOAS in Doctrine in Apigility.  When you encounter
+`zfcampus/zf-hal <https://github.com/zfcampus/zf-hal>`_ have a `max_depth parameter <https://apigility.org/documentation/modules/zf-hal#key-metadata_map>`_.  This special case is not intended to correct issues with HATEOAS in Doctrine in Apigility.  When you encounter
 a cyclic association in Doctrine in Apigility the correct way to handle is it using Hydrator Strategies and Filters.
 
 Hydrators in Doctrine in Apigility are handled by `phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_.  Familiarity with this module is very important to understanding how to extend hydrators without creating special case hydrators.  Doctrine in Apigility uses an Abstract Factory to create hydrators.  
