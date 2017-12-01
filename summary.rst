@@ -1,6 +1,13 @@
 Design Summary
 ==============
 
+This summary gives an overview of a very good design pattern for using Doctrine in Apigility.  Each section will have it's own page and
+is included here to give the developer a birds-eye view of the pattern.
+
+
+Files
+-----
+
 Doctrine in Apigility creates two files when a new resource is assigned to an API.  These are::
   
   [Resource]Collection.php
