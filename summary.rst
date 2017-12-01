@@ -69,7 +69,7 @@ Now when the QueryBuilder is ran inside the `DoctrineResource <https://github.co
 the id for the user passed to the patch will be appended to the QueryBuilder.  If the id does not belong to the current user then the
 QueryBuilder will return no results and a 404 will be thrown to the user trying to edit a record which is not theirs.
 
-More complicated examples **rely on your metadata being complete**.  If your metadata defines joines to and from every join (that is, to an inverse and to a owner entity for every relationship) you can add complicated joins to your Query Provider::
+More complicated examples **rely on your metadata being complete**.  If your metadata defines joins to and from every join (that is, to an inverse and to a owner entity for every relationship) you can add complicated joins to your Query Provider::
 
     $queryBuilder
         ->innerJoin('row.performance', 'performance')
