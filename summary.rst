@@ -61,3 +61,28 @@ may read::
 Now when the QueryBuilder is ran inside the `DoctrineResource <https://github.com/zfcampus/zf-apigility-doctrine/blob/master/src/Server/Resource/DoctrineResource.php>`_
 the id for the user passed to the patch will be appended to the QueryBuilder.  If the id does not belong to the current user then the
 QueryBuilder will return no results and a 404 will be thrown to the user trying to edit a record which is not theirs.
+
+More complicated examples **rely on your metadata being complete**.  If your metadata defines joines to and from every join (that is, to an inverse and to a owner entity for every relationship) you can add complicated joins to your Query Provider::
+
+    $queryBuilder
+        ->innerJoin('row.performance', 'performance')
+        ->innerJoin('performance.artist', 'artist')
+        ->innerJoin('artist.artistGroup', 'artistGroup')
+        ->andWhere($queryBuilder->expr()->isMemberOf(':user', 'artistGroup.user'))
+        ->setParameter('user', $this->getAuthentication()->getIdentity()->getUser())
+        ;
+
+
+HATEOAS, Hydrators, and Hydrator Strategies & Filters
+-------------------------------------------
+
+Because Doctrine hydrators can extract relationships the default response from a Doctrine in Apigility Resource will include an ``_embedded`` section with the extracted entities and their ``_embedded`` and so on.  **For special cases only** does 
+`zfcampus/zf-hal <https://github.com/zfcampus/zf-hal>`_ have a max_depth parameter <https://apigility.org/documentation/modules/zf-hal#key-metadata_map>`_.  This special case is not intended to correct issues with HATEOAS in Doctrine in Apigility.  When you encounter
+a cyclic association in Doctrine in Apigility the correct way to handle is it using Hydrator Strategies and Filters.
+
+Hydrators in Doctrine in Apigility are handled by `phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_.  Familiarity with this module is very important to understanding how to extend hydrators without creating special case hydrators.  Doctrine in Apigility uses an Abstract Factory to create hydrators.  
+
+**There should be no need to create your own hydrators.**  That bold statement is true because we're taking a white-gloved approach to 
+data handling.  By using Hydrator Strategies and Filters we can fine tune the configuration for each hydrator used for a Doctrine entity
+assigned to a resource.
+
