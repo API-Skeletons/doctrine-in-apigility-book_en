@@ -80,19 +80,20 @@ More complicated examples **rely on your metadata being complete**.  If your met
         ;
 
 
-Hydrators, and Hydrator Strategies & Filters
---------------------------------------------
+Hydrators
+---------
 
 If you're unfamiliar with hydrators 
 `read Zend Framework's manual on Hydrators <https://framework.zend.com/manual/2.4/en/modules/zend.stdlib.hydrator.html>`_ 
 then 
 `read Doctrine's manual on Hydrators <https://github.com/doctrine/DoctrineModule/blob/master/docs/hydrator.md>`_
+then 
+`read phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_
 
-Because Doctrine hydrators can extract relationships the default response from a Doctrine in Apigility Resource will include an ``_embedded`` section with the extracted entities and their ``_embedded`` and so on.  **For special cases only** does 
-`zfcampus/zf-hal <https://github.com/zfcampus/zf-hal>`_ have a `max_depth parameter <https://apigility.org/documentation/modules/zf-hal#key-metadata_map>`_.  This special case is not intended to correct issues with HATEOAS in Doctrine in Apigility.  When you encounter
-a cyclic association in Doctrine in Apigility the correct way to handle it is using Hydrator Strategies and Filters.
-
-Hydrators in Doctrine in Apigility are handled by `phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_.  Familiarity with this module is very important to understanding how to extend hydrators without creating special case hydrators.  Doctrine in Apigility uses an Abstract Factory to create hydrators.  
+Hydrators in Doctrine in Apigility are handled by 
+`phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_.  
+Familiarity with this module is very important to understanding how to extend hydrators without creating special case 
+hydrators.  Doctrine in Apigility uses an Abstract Factory to create hydrators.  
 
 **There should be no need to create your own hydrators.**  That bold statement is true because we're taking a white-gloved approach to 
 data handling.  By using Hydrator Strategies and Filters we can fine tune the configuration for each hydrator used for a Doctrine entity
@@ -121,6 +122,10 @@ ourselves with is ``strategies`` and ``filters``::
             'use_generated_hydrator' => true,
         ),
 
+
+Hydrator Filters
+----------------
+
 Here is the ArtistDefault filter::
 
     namespace DbApi\Hydrator\Filter;
@@ -147,9 +152,32 @@ Here is the ArtistDefault filter::
     
 This should be quite obvious; fields are excluded from being hydrated (or extracted) based on the filter.
 
-Next are Hydrator Strategies.  The module `API-Skeletons/zf-doctrine-hydrator <https://github.com/API-Skeletons/zf-doctrine-hydrator>`_
+
+Hydrator Strategies
+-------------------
+
+The module `API-Skeletons/zf-doctrine-hydrator <https://github.com/API-Skeletons/zf-doctrine-hydrator>`_
 provides all the hydrator strategies you will need.  More information on these strategies in `hydration <hydration>`_.
+
+
+max_depth
+---------
+
+Because Doctrine hydrators can extract relationships the default response from a Doctrine in Apigility Resource will include an ``_embedded`` section with the extracted entities and their ``_embedded`` and so on.  **For special cases only** does 
+`zfcampus/zf-hal <https://github.com/zfcampus/zf-hal>`_ have a `max_depth parameter <https://apigility.org/documentation/modules/zf-hal#key-metadata_map>`_.  This special case is not intended to correct issues with HATEOAS in Doctrine in Apigility.  When you encounter
+a cyclic association in Doctrine in Apigility the correct way to handle it is using Hydrator Strategies and Filters.
 
 
 HATEOAS
 -------
+
+Hypertext as the engine of application state is the goal of serving data from Doctrine in Apigility.  Creating a response with no 
+dead ends.  That is, anytime a reference is made to another entity or collection and that resource is not part of the response there
+will be an http self link to that resource.  This way a requesting application can fetch all data associated with a resource 
+even if it takes more than one request.
+
+A very good example of a practical response of HATEOAS can be found in the README for `API-Skeletons/zf-doctrine-hydrator <https://github.com/API-Skeletons/zf-doctrine-hydrator>`_
+
+The data returned from each resource is the data for that resource' entity.  You should not try to add data to a response which is 
+not naturally hydrated.  However, there may be times when computed data is required as part of a response.  This is covered in detail in `HATEOAS <hateoas>`_.
+
