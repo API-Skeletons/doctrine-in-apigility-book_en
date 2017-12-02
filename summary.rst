@@ -210,13 +210,19 @@ Finally here is an example created by applying the rules listed above and the de
       "title": "",
       "isApproved": true,
       "id": 2333,
-      "performanceLink": {},
       "performanceGroup": null,
       "_embedded": {
         "performanceCorrection": {
           "_links": {
             "self": {
               "href": "http:\/\/docker.api.etreedb.org\/performance-correction?filter%5B0%5D%5Bfield%5D=performance\u0026filter%5B0%5D%5Btype%5D=eq\u0026filter%5B0%5D%5Bvalue%5D=2333"
+            }
+          }
+        },
+        "performanceLink": {
+          "_links": {
+            "self": {
+              "href": "http:\/\/docker.api.etreedb.org\/performance-link?filter%5B0%5D%5Bfield%5D=performance\u0026filter%5B0%5D%5Btype%5D=eq\u0026filter%5B0%5D%5Bvalue%5D=2333"
             }
           }
         },
