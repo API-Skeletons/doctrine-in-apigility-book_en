@@ -80,4 +80,4 @@ Each album entry has an embedded ``artist`` but this would cause a cyclic refere
 used to just give a link to the ``artist`` from within an ``album``.  This is common when using the ``CollectionExtract`` hydrator.
 
 Within each API response when using Doctrine in Apigility there will never be a dead-end.  Any reference to an entity or collection
-will be handled by a hydrator thereby making the API fully implement HATEOAS.
+will be handled by a hydrator thereby making the API fully implement `HATEOAS <hateoas>`_.
