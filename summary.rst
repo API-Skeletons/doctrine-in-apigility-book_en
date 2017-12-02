@@ -186,6 +186,7 @@ An Example
 ----------
 
 Finally here is an example created by applying the rules listed above and the details listed in this book::
+
     {
       "performanceDate": "1995-02-21",
       "venue": "Delta Center",
