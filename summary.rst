@@ -185,7 +185,9 @@ not naturally hydrated.  However, there may be times when computed data is requi
 An Example
 ----------
 
-Finally here is an example created by applying the rules listed above and the details listed in this book::
+Finally here is an example created by applying the rules listed above and the details listed in this book.  You'll see this performance
+has an embedded artist as well as links to every place in the API a client may wish to go to next.  It is not the job of the API to 
+decide where to go next.  The job of the API is to serve data and give directions for where a client may go::
 
     {
       "performanceDate": "1995-02-21",
