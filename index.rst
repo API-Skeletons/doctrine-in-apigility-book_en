@@ -19,3 +19,4 @@ a fully `Richardson Maturity Model Level 3 <https://martinfowler.com/articles/ri
     security
     hydrators
     hateoas
+    querybuilder
