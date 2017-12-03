@@ -35,7 +35,7 @@ takes an argument of the path to create the entities.  If you give it the path `
 recent Zend Framework work the autoloading of modules has been moved to the composer.json file and you can still use that but you must be
 sure to have the correct directory structure for the code generation.
 
-Inside the Db module create a ``config` directory and inside the directory create an ``orm`` directory.  This is where you will export
+Inside the Db module create a ``config`` directory and inside that directory create an ``orm`` directory.  This is where you will export
 your entity metadata to from Skipper.
 
 
@@ -77,10 +77,61 @@ For a brand new ERD export the XML to the ``module/Db/config/orm`` directory the
 and  your PHP skeleton code will be done.  
 
 
+Recommended Extension Repositories
+==================================
+
+
 Migrations and Fixtures
 -----------------------
 
 This is a new topic to many developers so I'm including this special note to you, reader, to become familiar with them.
 `migrations <https://github.com/doctrine/migrations>`_ and `fixtures <https://github.com/API-Skeletons/zf-doctrine-data-fixture>`_
 
-  
+
+Doctrine QueryBuilder
+---------------------
+
+Implementing the repository `zfcampus/zf-doctrine-querybuilder <https://github.com/zfcampus/zf-doctrine-querybuilder>`_
+is the most important extension for Doctrine in Apigility.  This repository allows your clients to create complex queries and sorting
+on individual resources.   For instance if you give a user access to an ``Performance`` resource and that resources returns performances
+then ``zf-doctrine-querybuilder`` will allow a client to return only a subset of the data they have access to, for instance just 
+performances from a given state.  Implementation is covered in `Doctrine QueryBuilder <querybuilder>`_. 
+
+
+Doctrine Repository Plugins
+---------------------------
+
+`API-Skeletons/zf-doctrine-repository <https://github.com/API-Skeletons/zf-doctrine-repository>`_
+provides a method to override the default ``Repository`` factory for Doctrine and implements a plugin architecture which can be used
+in lieu of dependency injection into repositories.  This repository provides a clean method for interacting with external resources from
+within a repository and its use is strongly encouraged.
+
+
+Doctrine Hydrators
+------------------
+
+Covered also in `hydrators <hydrators>`_ is `API-Skeletons/zf-doctrine-hydrator <https://github.com/API-Skeletons/zf-doctrine-hydrator>`_.
+This repository includes three hydrator plugins which are used to create a fluent HATEOAS HAL API response.
+
+
+OAuth2 for Doctrine in Apigility
+--------------------------------
+
+OAuth2 is implemented with several repositories, each building on the last.  The first is 
+`API-Skeletons/zf-oauth2-doctrine <https://github.com/API-Skeletons/zf-oauth2-doctrine>`_ which provies the metadata to attach OAuth2 
+entities to your existing schema via a dynamic hook to your User entity.  
+
+`API-Skeletons/zf-oauth2-doctrine-console <https://github.com/API-Skeletons/zf-oauth2-doctrine-console>`_ provies console routes for 
+managing ``zf-oauth2-doctrine`` resources.
+
+`API-Skeletons/zf-oauth2-doctrine-identity <https://github.com/API-Skeletons/zf-oauth2-doctrine-identity>`_ should have been a part of 
+``zf-oauth2-doctrine`` from the beginning.  That being said, this repository replaces the ``AuthenticatedIdentity`` of 
+``zfcampus/zf-mvc-auth`` with an identity which contains access to the ``AccessToken``, ``User``, ``Client``, and ``AuthorizationService``.  This allows you to inject the ``AuthenticationService`` into your classes then access the identity via 
+``$authorizationService->getIdentity()`` then get the User class via ``->getUser()``.  The result of all this is a cleaner way to work
+with ORM objects only throughout your application.
+
+`API-Skeletons/zf-oauth2-doctrine-permissions-acl <https://github.com/API-Skeletons/zf-oauth2-doctrine-permissions-acl>`_ uses the 
+identity from ``zf-oauth2-doctrine-identity`` to create ACL permissions on your resources.  This module cleanly provides integration 
+with ``zfcampus/zf-mvc-auth`` and is covered in `authorization <authorization>`_.
+
+
