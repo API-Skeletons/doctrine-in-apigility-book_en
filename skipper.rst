@@ -1,5 +1,5 @@
-ORM Modeling with Skipper
-=========================
+Entity Relationship Diagramming with Skipper
+============================================
 
 In the world of Object Relational Mapping one tool stands alone.  `Skipper <https://skipper18.com>`_ is a visual
 diagramming tool which exports to Doctrine metadata.  
