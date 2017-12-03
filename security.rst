@@ -54,6 +54,10 @@ More complicated examples **rely on your metadata being complete**.  If your met
         ;
 
 
-Query Providers and zfcampus/zf-doctrine-querybuilder
------------------------------------------------------
+Query Create Filters
+--------------------
+
+Query Create Filters are the homolog to Query Providers but for POST requests only.  These are intended to inspect the data the user is 
+POSTing and if anything is incorrect to return an ``ApiProblem``.  These are not intended to correct the data.  **If an API receives data
+which is incorrect it should reject the data, not try to fix it.**
 
