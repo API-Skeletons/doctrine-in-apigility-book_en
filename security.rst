@@ -2,8 +2,8 @@ Security
 ========
 
 
-Authentication and Authorization
---------------------------------
+Authentication 
+--------------
 
 Knowing which user is logging into Apigility is not as strait forward as you may guess.  The Basic and Digest
 authorization mechanisms rely on a .htpasswd file to store user credentials.  This is not how the majority
