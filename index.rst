@@ -15,10 +15,7 @@ a fully `Richardson Maturity Model Level 3 <https://martinfowler.com/articles/ri
     summary
     skipper
     skeleton
-    zf-oauth2-doctrine/index
-    zf-oauth2-doctrine-console/index
-    
-    authentication/index
-    authorization/index
-    zf-doctrine-hydrator/index
-    zf-doctrine-querybuilder/index
+    files
+    security
+    hydrators
+    hateoas
