@@ -24,7 +24,7 @@ ourselves with is ``strategies`` and ``filters``::
             'filters' => array(
                 'artist_default' => array(
                     'condition' => 'and',
-                    'filter' => 'DbApi\\Hydrator\\Filter\\ArtistDefault',
+                    'filter' => 'DbApi\\V1\\Hydrator\\Filter\\ArtistFilter',
                 ),
             ),
             'strategies' => array(
