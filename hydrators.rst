@@ -8,9 +8,7 @@ then
 then 
 `read phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_
 
-hydrators.  Doctrine in Apigility uses an Abstract Factory to create hydrators.  
-
-**There should be no need to create your own hydrators.**  That bold statement is true because we're taking a white-gloved approach to 
+Doctrine in Apigility uses an Abstract Factory to create hydrators.  **There should be no need to create your own hydrators.**  That bold statement is true because we're taking a white-gloved approach to 
 data handling.  By using Hydrator Strategies and Filters we can fine tune the configuration for each hydrator used for a Doctrine entity
 assigned to a resource.
 
