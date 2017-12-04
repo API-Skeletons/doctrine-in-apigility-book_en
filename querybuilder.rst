@@ -4,7 +4,7 @@ QueryBuilder
 There is a library just for turning $_GET requests into QueryBuilder parameters for Doctrine.  This library was written about the same time
 as Doctrine in Apigility and it is intended to be used together.
 
-`You can find zfcampus/zf-doctrine-querybuilder here<https://github.com/zfcampus/zf-doctrine-querybuilder>`_.  Please read the Philosopy 
+`You can find zfcampus/zf-doctrine-querybuilder here <https://github.com/zfcampus/zf-doctrine-querybuilder>`_.  Please read the Philosopy 
 first to understand why this library was written and to ensure you're comfortable with the excellent level of access the library provides
 to clients of your API.  The rest of the documentation for that repository details well the capabilities so here I'll show a complete
 example for implementing zf-doctrine-querybuilder with Query Providers.
