@@ -1,4 +1,4 @@
-.. header::  Created by API Skeletons
+    Created by `API Skeletons <https://apiskeletons.com>`_ All rights reserved.
 
 Doctrine in Apigility Book
 ==========================
