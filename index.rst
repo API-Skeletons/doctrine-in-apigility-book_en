@@ -1,5 +1,5 @@
-Doctrine in Apigility Documentation
-===================================
+Doctrine in Apigility Book
+==========================
 
 Welcome to the Doctrine in Apigility Book.  This documentation will guide you from the 
 `zfcampus/zf-apigility-skeleton <https://github.com/zfcampus/zf-apigility-skeleton>`_ to 
