@@ -23,8 +23,11 @@ assigned to a resource.
 
 `phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_ makes working with hydrators easy by
 moving each field which could be hydrated into Doctrine in Apigility's configuration file.  The only configuration we need to concern
-ourselves with is ``strategies`` and ``filters``::
+ourselves with is ``strategies`` and ``filters``
 
+.. code-block:: php
+
+  <?php
     'doctrine-hydrator' => array(
         'DbApi\\V1\\Rest\\Artist\\ArtistHydrator' => array(
             'entity_class' => 'Db\\Entity\\Artist',
@@ -51,8 +54,11 @@ Hydrator Filters
 A hydrator filter returns a boolean for whether the field passed to the filter should be rendered or not.  They are used for removing
 fields, associations, and collections from a hydrating entity where that data should not be passed through the API.  For instance
 a ``User`` entity may contain a ``password`` field used for authentication.  While this field is used inside the application is has no
-business being returned as part of a ``User`` resource of the API::
+business being returned as part of a ``User`` resource of the API
 
+.. code-block:: php
+
+  <?php
     namespace DbApi\V1\Hydrator\Filter;
 
     use Zend\Hydrator\Filter\FilterInterface;
@@ -70,8 +76,11 @@ business being returned as part of a ``User`` resource of the API::
         }
     }
 
-Hydrator filters are attched to hydrators through configuration which is part of the Doctrine in Apigility configuration::
+Hydrator filters are attched to hydrators through configuration which is part of the Doctrine in Apigility configuration
 
+.. code-block:: php
+
+  <?php
     'doctrine-hydrator' => array(
         'DbApi\\V1\\Rest\\User\\UserHydrator' => array(
             ...

@@ -20,6 +20,7 @@ Doctrine in Apigility creates two files when a new resource is assigned to an AP
 
 .. code-block:: php
 
+  <?php
   [Resource]Collection.php
   [Resource]Resource.php
 
@@ -27,6 +28,7 @@ As an example for an Artist resource these files full path will be
 
 .. code-block:: php
 
+  <?php
   module/DbApi/src/DbApi/V1/Rest/Artist/ArtistCollection.php
   module/DbApi/src/DbApi/V1/Rest/Artist/ArtistResource.php'
 

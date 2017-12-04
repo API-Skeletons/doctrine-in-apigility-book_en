@@ -49,7 +49,9 @@ So when a Doctrine entity is `extracted with a hydrator <hydration>`_ the relati
 By using hydration strategies you may include just a
 link to the canonical resource or embed the entire resource and in turn embed its resources.
 
-Consider this response to a request for an Artist::
+Consider this response to a request for an Artist
+
+.. code-block:: json
 
     {
         "id": 1,

@@ -54,8 +54,9 @@ config/autoload/local.php
 You'll need to create a configuration for Doctrine in your local.php.  This file is used so each deployment can have independent
 configuration.  Here is an example file::
 
-    <?php
+.. code-block:: php
 
+    <?php
     return array(
         'doctrine' => array(
             'connection' => array(

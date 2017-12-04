@@ -21,8 +21,11 @@ example for implementing zf-doctrine-querybuilder with Query Providers.
 Abstract Factory
 ----------------
 
-We'll need a common factory for all Query Providers to implement zf-doctrine-querybuilder::
+We'll need a common factory for all Query Providers to implement zf-doctrine-querybuilder
 
+.. code-block:: php
+
+  <?php
     namespace DbApi\Query\Provider;
 
     use Interop\Container\ContainerInterface;
@@ -63,8 +66,11 @@ Abstract Query Provider
 -----------------------
 
 Each Query Provider created through this abstract factory must be a AbstractQueryProvider and here
-is that code::
+is that code
 
+.. code-block:: php
+
+  <?php
     namespace DbApi\Query\Provider;
 
     use Zend\Authentication\AuthenticationService;
@@ -153,8 +159,11 @@ the query to the QueryBuilder.
 Configuration
 -------------
 
-Enable the abstract factory for zf-apigility-doctrine-query-provider::
+Enable the abstract factory for zf-apigility-doctrine-query-provider
 
+.. code-block:: php
+
+  <?php
     'zf-apigility-doctrine-query-provider' => array(
         'abstract_factories' => array(
             'DbApi\\Query\\Provider\\QueryProviderAbstractFactory',
@@ -166,8 +175,11 @@ Query Provider Example
 ----------------------
 
 To create a query provider extend it from the new AbstractQueryProvider and call the parent createQuery as the first line of the
-``createQuery`` function::
+``createQuery`` function
 
+.. code-block:: php
+
+  <?php
     namespace DbApi\Query\Provider;
 
     use ZF\Rest\ResourceEvent;

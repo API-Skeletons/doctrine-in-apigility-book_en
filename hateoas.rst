@@ -26,8 +26,11 @@ Adding Additional Links
 -----------------------
 
 Links may be used for anything to link to anywhere.  Some HATEOAS tutorials suggest using links to show other actions such as a POST.
-To add more links to an entity as it is rendered use the ``renderEntity`` event in your Module.php file::
+To add more links to an entity as it is rendered use the ``renderEntity`` event in your Module.php file
 
+.. code-block:: php
+
+  <?php
     use Zend\EventManager\Event;
     use Zend\EventManager\EventInterface;
     use ZF\Hal\Link\Link;
@@ -62,8 +65,11 @@ Computed Data
 -------------
 
 Often it's useful to include computed data with an entity response.  You can do this by attaching to the ``renderEntity.post`` event
-in your Module.php file::
+in your Module.php file
 
+.. code-block:: php
+
+  <?php
     use Zend\EventManager\Event;
     use Zend\EventManager\EventInterface;
 

@@ -30,8 +30,11 @@ old-fashioned login page and here `zfcampus/zf-mvc-auth <https://github.com/zfca
 
 As mentioned in this Auth section ``zf-mvc-auth`` can force a configured Authorization adapter to a given API.  The
 mechanism `zf-mvc-auth` uses to accomplish this is configuration of resource prefixes to Authentication Types.  When you
-create a custom Authentication Adapter you define the Authentication Type it supports.  Let's begin with the configuration::
+create a custom Authentication Adapter you define the Authentication Type it supports.  Let's begin with the configuration
 
+.. code-block:: php
+
+  <?php
     'zf-mvc-auth' => [
         'authentication' => [
             'map' => [
@@ -79,8 +82,11 @@ This interface includes
 For our examples we will use a route ``/login`` where any unauthenticated user who does not have their credentials stored in the session
 and is trying to access a resource under ``ZF\OAuth2`` will be routed to.  This route will show the login page, let the user post to it,
 and if successful it will set the userid into the session where our adapter will be looking for it.  When a user
-successfully authenticates with this adapter they will be assigned an ``Application\Identity\UserIdentity``::
+successfully authenticates with this adapter they will be assigned an ``Application\Identity\UserIdentity``
 
+.. code-block:: php
+
+  <?php
     namespace Application\Authentication\Adapter;
 
     use ZF\MvcAuth\Authentication\AdapterInterface;
@@ -137,8 +143,11 @@ successfully authenticates with this adapter they will be assigned an ``Applicat
         }
     }
 
-To use this authentication adapter you must assign it to the DefaultAuthenticationListener::
+To use this authentication adapter you must assign it to the DefaultAuthenticationListener
 
+.. code-block:: php
+
+  <?php
     namespace Application;
 
     use ZF\MvcAuth\Authentication\DefaultAuthenticationListener;
@@ -167,8 +176,11 @@ The Basic and Digest authentication can assign the user because they read the .h
 the user must be fetched using the ``ZF\OAuth2\Provider\UserId`` alias.  You may create your own provider for
 a custom method of fetching an id.
 
-This is the default::
+This is the default
 
+.. code-block:: php
+
+  <?php
     'service_manager' => [
         'aliases' => [
             'ZF\OAuth2\Provider\UserId' => 'ZF\OAuth2\Provider\UserId\AuthenticationService',
@@ -180,8 +192,11 @@ The ``getId()`` or ``id`` property of the provider
 of the identity will be used to assign to OAuth2.  When an OAuth2 resource is requested with a Bearer token the user
 will be fetched from the database and assigned to the AuthenticatedIdentity.
 
-Here is an example ``UserIdentity``::
+Here is an example ``UserIdentity``
 
+.. code-block:: php
+
+  <?php
     namespace Application\Identity;
 
     use ZF\MvcAuth\Identity\IdentityInterface;
@@ -231,8 +246,11 @@ Authorization
 With our adapter in place it will not secure the ZF\OAuth2 routes because they are by default secured with the
 ``ZF\MvcAuth\Identity\GuestIdentitiy``.  So we need to add Authorization to the application:
 
-First we'll extend the onBootstrap we just created::
+First we'll extend the onBootstrap we just created
 
+.. code-block:: php
+
+  <?php
     public function onBootstrap(EventInterface $e)
     {
         $app = $e->getApplication();
@@ -251,8 +269,11 @@ First we'll extend the onBootstrap we just created::
         );
     }
 
-And we need to create the AuthorizationListener we just configured::
+And we need to create the AuthorizationListener we just configured
 
+.. code-block:: php
+
+  <?php
     namespace Application\Authorization;
 
     use ZF\MvcAuth\MvcAuthEvent;
@@ -291,8 +312,11 @@ Query Provider may be assigned.
 
 Query Providers are used for security and for extending the functionality of the QueryBuilder object they provide.  For instance,
 given a User API resource for which only the user who owns a resource may PATCH the resource, a QueryBuilder object can assign an
-``andWhere`` parameter to the QueryBuilder to specify that only the current user may fetch the resoruce::
+``andWhere`` parameter to the QueryBuilder to specify that only the current user may fetch the resoruce
 
+.. code-block:: php
+
+  <?php
     final class UserPatch extends AbstractQueryProvider
     {
         public function createQuery(ResourceEvent $event, $entityClass, $parameters)
@@ -313,8 +337,11 @@ The entity class we are ``select()`` from in the QueryBuilder will always be ali
 returned from a QueryBuilder as a complete Doctrine object.
 
 More complicated examples **rely on your metadata being complete**.  If your metadata defines joins to and from every join
-(that is, to an inverse and to a owner entity for every relationship) you can add complicated joins to your Query Provider::
+(that is, to an inverse and to a owner entity for every relationship) you can add complicated joins to your Query Provider
 
+.. code-block:: php
+
+  <?php
     $queryBuilder
         ->innerJoin('row.performance', 'performance')
         ->innerJoin('performance.artist', 'artist')
