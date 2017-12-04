@@ -1,0 +1,57 @@
+HATEOAS
+=======
+
+**Hypertext As The Engine Of Application State**.  This is the lofty goal an API developer should aspire to.  By embedding URLs in your
+response a client application doesn't need to know details about the API such as how to paginate or where to find a referenced
+resource.  By default Doctrine in Apigility creates canonical self referential links for every entity in a response.  This is a big step 
+for an API and you get it for free with Doctrine in Apigility.
+
+Hypertext Application Language (HAL) is the dialect of JSON which Apigility speaks.  The notable properties of HAL are self referential
+``_links`` and an ``_embedded`` sections in each entity response (``_embedded`` included only when an entity has referenced data).
+The ``_links`` array can be modified by the 
+programmer as the resource is composed thereby allowing custom links to be included with the response.  For instance a link to the
+audit trail for a resource may be included along with the canonical self referential link.
+
+
+Computed Data
+-------------
+
+Often it's useful to include computed data with an entity response.  You can do this by attaching to the ``renderEntity.post`` event
+in your Module.php file::
+
+    use Zend\EventManager\Event;
+    use Zend\EventManager\EventInterface;
+
+    public function onBootstrap(EventInterface $e)
+    {
+        $app = $e->getTarget();
+        $this->container = $app->getServiceManager();
+        $sharedEvents = $this->container->get('SharedEventManager');
+        $sharedEvents->attach('ZF\Hal\Plugin\Hal', 'renderEntity.post', array($this, 'onRenderEntityPost'));
+    }
+
+    public function onRenderEntityPost(Event $e)
+    {
+        $objectManager = $this->container->get('doctrine.entitymanager.orm_default');
+        $entity = $e->getParam('entity');
+
+        switch (get_class($entity->getEntity())) {
+            case 'Db\Entity\Artist':
+                $queryBuilder = $objectManager->createQueryBuilder();
+                $queryBuilder->select('count(p)')
+                    ->from('Db\Entity\Performance', 'p')
+                    ->innerJoin('p.artist', 'a')
+                    ->andWhere('a.id = :id')
+                    ->setParameter('id', $entity->getEntity()->getId())
+                ;
+                $payload = $e->getParam('payload');
+                $payload['_computed'] = array(
+                    'performance' => array(
+                        'count' => $queryBuilder->getQuery()->getSingleScalarResult(),
+                    ),
+                );
+                break;
+            default:
+                break;
+        }
+    }
