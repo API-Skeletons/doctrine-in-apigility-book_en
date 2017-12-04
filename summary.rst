@@ -1,3 +1,11 @@
+.. role:: raw-html(raw)
+   :format: html
+
+.. note::
+  Freely contributed by Tom H Anderson of `API Skeletons <https://apiskeletons.com>`_.
+  All rights reserved.  :raw-html:`<form style="display: inline" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="WHR95HM3DMYAQ"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></form>`
+  if you find this book useful.
+
 Design Summary
 ==============
 
@@ -9,7 +17,7 @@ Files
 -----
 
 Doctrine in Apigility creates two files when a new resource is assigned to an API.  These are::
-  
+
   [Resource]Collection.php
   [Resource]Resource.php
 
@@ -32,8 +40,8 @@ and the second layer is Query Providers.  ACL Authorization is handled by Apigil
 ACL Security
 ------------
 
-Doctrine in Apigility expects you to implement the Authorization created with 
-`zfcampus/zf-mvc-auth <https://github.com/zfcampus/zf-mvc-auth>`_ for your project.  This probably means implementing ACL in your 
+Doctrine in Apigility expects you to implement the Authorization created with
+`zfcampus/zf-mvc-auth <https://github.com/zfcampus/zf-mvc-auth>`_ for your project.  This probably means implementing ACL in your
 application and assigning roles to the differnet HTTP verbs each role can access.  For instance a DELETE verb may only be available
 to an administrator.  This is explained in detail in `Authorization <authorization>`_.
 
@@ -43,7 +51,7 @@ Query Provider Security
 
 For any resource where the access to the resource is limited a Query Provider should be created.  Query Providers are small classes
 which return a Doctrine QueryBuilder object.  By default the QueryBuilder contains only the entity assigned to the resource the user
-is requesting.  By extending the QueryBuilder with filters and joins the query will return filtered data based on a particular user or 
+is requesting.  By extending the QueryBuilder with filters and joins the query will return filtered data based on a particular user or
 security permission of the user the QueryBuilder, when ran, will produce SQL that adds new security to the resource.
 
 For instance, if a UserResource is secured by ACL to only USER roles but each user can only PATCH to their own entity the Query Provider
@@ -83,23 +91,23 @@ More complicated examples **rely on your metadata being complete**.  If your met
 Hydrators
 ---------
 
-If you're unfamiliar with hydrators 
-`read Zend Framework's manual on Hydrators <https://framework.zend.com/manual/2.4/en/modules/zend.stdlib.hydrator.html>`_ 
-then 
+If you're unfamiliar with hydrators
+`read Zend Framework's manual on Hydrators <https://framework.zend.com/manual/2.4/en/modules/zend.stdlib.hydrator.html>`_
+then
 `read Doctrine's manual on Hydrators <https://github.com/doctrine/DoctrineModule/blob/master/docs/hydrator.md>`_
-then 
+then
 `read phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_
 
-Hydrators in Doctrine in Apigility are handled by 
-`phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_.  
-Familiarity with this module is very important to understanding how to extend hydrators without creating special case 
-hydrators.  Doctrine in Apigility uses an Abstract Factory to create hydrators.  
+Hydrators in Doctrine in Apigility are handled by
+`phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_.
+Familiarity with this module is very important to understanding how to extend hydrators without creating special case
+hydrators.  Doctrine in Apigility uses an Abstract Factory to create hydrators.
 
-**There should be no need to create your own hydrators.**  That bold statement is true because we're taking a white-gloved approach to 
+**There should be no need to create your own hydrators.**  That bold statement is true because we're taking a white-gloved approach to
 data handling.  By using Hydrator Strategies and Filters we can fine tune the configuration for each hydrator used for a Doctrine entity
 assigned to a resource.
 
-`phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_ makes working with hydrators easy by 
+`phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_ makes working with hydrators easy by
 moving each field which could be hydrated into Doctrine in Apigility's configuration file.  The only configuration we need to concern
 ourselves with is ``strategies`` and ``filters``::
 
@@ -149,7 +157,7 @@ Here is the ArtistDefault filter::
             return true;
         }
     }
-    
+
 This should be quite obvious; fields are excluded from being hydrated (or extracted) based on the filter.
 
 
@@ -163,7 +171,7 @@ provides all the hydrator strategies you will need.  More information on these s
 max_depth
 ---------
 
-Because Doctrine hydrators can extract relationships the default response from a Doctrine in Apigility Resource will include an ``_embedded`` section with the extracted entities and their ``_embedded`` and so on.  **For special cases only** does 
+Because Doctrine hydrators can extract relationships the default response from a Doctrine in Apigility Resource will include an ``_embedded`` section with the extracted entities and their ``_embedded`` and so on.  **For special cases only** does
 `zfcampus/zf-hal <https://github.com/zfcampus/zf-hal>`_ have a `max_depth parameter <https://apigility.org/documentation/modules/zf-hal#key-metadata_map>`_.  This special case is not intended to correct issues with HATEOAS in Doctrine in Apigility.  When you encounter
 a cyclic association in Doctrine in Apigility the correct way to handle it is using Hydrator Strategies and Filters.
 
@@ -171,14 +179,14 @@ a cyclic association in Doctrine in Apigility the correct way to handle it is us
 HATEOAS
 -------
 
-Hypertext as the engine of application state is the goal of serving data from Doctrine in Apigility.  Creating a response with no 
+Hypertext as the engine of application state is the goal of serving data from Doctrine in Apigility.  Creating a response with no
 dead ends.  That is, anytime a reference is made to another entity or collection and that resource is not part of the response there
-will be an http self link to that resource.  This way a requesting application can fetch all data associated with a resource 
+will be an http self link to that resource.  This way a requesting application can fetch all data associated with a resource
 even if it takes more than one request.
 
 A very good example of a practical response of HATEOAS can be found in the README for `API-Skeletons/zf-doctrine-hydrator <https://github.com/API-Skeletons/zf-doctrine-hydrator>`_
 
-The data returned from each resource is the data for that resource' entity.  You should not try to add data to a response which is 
+The data returned from each resource is the data for that resource' entity.  You should not try to add data to a response which is
 not naturally hydrated.  However, there may be times when computed data is required as part of a response.  This is covered in detail in `HATEOAS <hateoas>`_.
 
 
@@ -186,7 +194,7 @@ An Example
 ----------
 
 Finally here is an example created by applying the rules listed above and the details listed in this book.  You'll see this performance
-has an embedded artist as well as links to every place in the API a client may wish to go to next.  It is not the job of the API to 
+has an embedded artist as well as links to every place in the API a client may wish to go to next.  It is not the job of the API to
 decide where to go next.  The job of the API is to serve data and give directions for where a client may go::
 
     {

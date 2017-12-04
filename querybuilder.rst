@@ -1,10 +1,19 @@
+.. role:: raw-html(raw)
+   :format: html
+
+.. note::
+  Freely contributed by Tom H Anderson of `API Skeletons <https://apiskeletons.com>`_.
+  All rights reserved.  :raw-html:`<form style="display: inline" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="WHR95HM3DMYAQ"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></form>`
+  if you find this book useful.
+
+
 QueryBuilder
 ============
 
 There is a library just for turning $_GET requests into QueryBuilder parameters for Doctrine.  This library was written about the same time
 as Doctrine in Apigility and it is intended to be used together.
 
-`You can find zfcampus/zf-doctrine-querybuilder here <https://github.com/zfcampus/zf-doctrine-querybuilder>`_.  Please read the Philosopy 
+`You can find zfcampus/zf-doctrine-querybuilder here <https://github.com/zfcampus/zf-doctrine-querybuilder>`_.  Please read the Philosopy
 first to understand why this library was written and to ensure you're comfortable with the excellent level of access the library provides
 to clients of your API.  The rest of the documentation for that repository details well the capabilities so here I'll show a complete
 example for implementing zf-doctrine-querybuilder with Query Providers.
@@ -47,7 +56,7 @@ We'll need a common factory for all Query Providers to implement zf-doctrine-que
 
 We're including the filter and order by manager from zf-doctrine-querybuilder in our Query Providers.  Additionally the Object Manager
 is set (note for this class the object manager alias is static) and the authentication from zf-mvc-auth is set.  This gives access to
-the currently authenticated user.  
+the currently authenticated user.
 
 
 Abstract Query Provider
@@ -156,7 +165,7 @@ Enable the abstract factory for zf-apigility-doctrine-query-provider::
 Query Provider Example
 ----------------------
 
-To create a query provider extend it from the new AbstractQueryProvider and call the parent createQuery as the first line of the 
+To create a query provider extend it from the new AbstractQueryProvider and call the parent createQuery as the first line of the
 ``createQuery`` function::
 
     namespace DbApi\Query\Provider;

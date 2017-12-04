@@ -1,8 +1,17 @@
+.. role:: raw-html(raw)
+   :format: html
+
+.. note::
+  Freely contributed by Tom H Anderson of `API Skeletons <https://apiskeletons.com>`_.
+  All rights reserved.  :raw-html:`<form style="display: inline" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="WHR95HM3DMYAQ"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></form>`
+  if you find this book useful.
+
+
 Security
 ========
 
 
-Authentication 
+Authentication
 --------------
 
 Knowing which user is logging into Apigility is not as strait forward as you may guess.  The Basic and Digest
@@ -69,7 +78,7 @@ This interface includes
 
 For our examples we will use a route ``/login`` where any unauthenticated user who does not have their credentials stored in the session
 and is trying to access a resource under ``ZF\OAuth2`` will be routed to.  This route will show the login page, let the user post to it,
-and if successful it will set the userid into the session where our adapter will be looking for it.  When a user 
+and if successful it will set the userid into the session where our adapter will be looking for it.  When a user
 successfully authenticates with this adapter they will be assigned an ``Application\Identity\UserIdentity``::
 
     namespace Application\Authentication\Adapter;
@@ -278,7 +287,7 @@ A query provider is a class which provides a Doctrine QueryBuilder to the Doctri
 This prepared QueryBuilder is then used to fetch the entity or collection through the Doctrine Object Manager.  The same Query Provider
 may be used for querying an entity or collection because when querying an entity the id from the route is assigned to the QueryBuilder
 after it is fetched from the Query Provider.  For every verb (GET, POST, PATCH, etc.) your API handles through a Doctrine resource a
-Query Provider may be assigned.  
+Query Provider may be assigned.
 
 Query Providers are used for security and for extending the functionality of the QueryBuilder object they provide.  For instance,
 given a User API resource for which only the user who owns a resource may PATCH the resource, a QueryBuilder object can assign an
@@ -300,10 +309,10 @@ given a User API resource for which only the user who owns a resource may PATCH 
         }
     }
 
-The entity class we are ``select()`` from in the QueryBuilder will always be aliased as ``row``.  This is the only data which should be 
-returned from a QueryBuilder as a complete Doctrine object.  
+The entity class we are ``select()`` from in the QueryBuilder will always be aliased as ``row``.  This is the only data which should be
+returned from a QueryBuilder as a complete Doctrine object.
 
-More complicated examples **rely on your metadata being complete**.  If your metadata defines joins to and from every join 
+More complicated examples **rely on your metadata being complete**.  If your metadata defines joins to and from every join
 (that is, to an inverse and to a owner entity for every relationship) you can add complicated joins to your Query Provider::
 
     $queryBuilder
@@ -318,7 +327,7 @@ More complicated examples **rely on your metadata being complete**.  If your met
 Query Create Filters
 --------------------
 
-Query Create Filters are the homolog to Query Providers but for POST requests only.  These are intended to inspect the data the user is 
+Query Create Filters are the homolog to Query Providers but for POST requests only.  These are intended to inspect the data the user is
 POSTing and if anything is incorrect to return an ``ApiProblem``.  These are not intended to correct the data.  **If an API receives data
 which is incorrect it should reject the data, not try to fix it.**
 
