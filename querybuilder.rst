@@ -151,7 +151,7 @@ Query Provider Example
 ----------------------
 
 To create a query provider extend it from the new AbstractQueryProvider and call the parent createQuery as the first line of the 
-``createQuery`` function.
+``createQuery`` function::
 
     namespace DbApi\Query\Provider;
 
