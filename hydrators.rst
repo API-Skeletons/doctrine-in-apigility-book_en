@@ -61,13 +61,13 @@ business being returned as part of a ``User`` resource of the API::
         }
     }
     
-Hydrator filters are attched to hydrators through configuration which is part of the Apigility configuration::
+Hydrator filters are attched to hydrators through configuration which is part of the Doctrine in Apigility configuration::
 
     'doctrine-hydrator' => array(
         'DbApi\\V1\\Rest\\User\\UserHydrator' => array(
             ...
             'filters' => array(
-                'artist_default' => array(
+                'user_filter' => array(
                     'condition' => 'and',
                     'filter' => 'DbApi\\V1\\Hydrator\\Filter\\UserFilter',
                 ),
@@ -75,3 +75,24 @@ Hydrator filters are attched to hydrators through configuration which is part of
         ),
 
 It is recommended to only use one hydrator filter per hydrator.  
+
+
+Hydrator Strategies
+-------------------
+
+A hydrator strategy may be attached to any field, association, or collection which is derived by hydrating an entity.  
+`API-Skeletons/zf-doctrine-hydrator <https://github.com/API-Skeletons/zf-doctrine-hydrator>`_ has three hydration strategies and rather
+than create a long article about how to create your own strategies it is the recommendation of this boot that you only use one of
+these three strategies for your hydrated data.  
+
+There is a pitfall to using strategies; especially when a strategy extracts a collection.  An entity which is a member of a collection
+which is extracted as part of a strategy for a parent entity will (should) have a reference back to the parent entity.  This creates
+a cyclic relationship.  Often developers turn to the ``max_depth`` parameter of ``zf-hal`` to correct this but this approach is really 
+hack and should be avoided.  Instead of trying to limit the depth replace the reference to the parent entity in the collection with
+an ``EntityLink``; that is, just provide a link to the canonical resource rather than the whole extracted entity.
+
+Using hydrator strategies you can create an elegant response for your API.  A good strategy for applying Hydrator Strategies is to 
+create your API resource through the Apigility UI then fetch an entity through the API.  You'll see every relationship for the entity
+often as an empty class ``{}``.  For each of these empty classes, often they are collections, assign a hydrator strategy.  Don't try to 
+over-do it; you don't need to return the entire database with each request; just make sure the requesting client can get to any data 
+which is related to the resource.  It's ok if a client makes 2 or 3 requests to get all thier data.
