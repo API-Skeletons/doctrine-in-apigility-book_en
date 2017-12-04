@@ -10,7 +10,7 @@ create the same entity within the application the same defaults would not be app
 You should use Doctrine events as often as needed.
 
 Within a Doctrine event you have access to the Object Manager.  This in turn has access to the Repositories 
-(see `API-Skeletons/zf-doctrine-repository <https://github.com/API-Skeletons/zf-doctrine-repository) which may have access to plugins 
+(see `API-Skeletons/zf-doctrine-repository <https://github.com/API-Skeletons/zf-doctrine-repository>`_) which may have access to plugins 
 if you use the referenced module, as you should.  
 
 
