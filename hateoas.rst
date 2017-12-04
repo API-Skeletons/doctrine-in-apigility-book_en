@@ -13,6 +13,42 @@ programmer as the resource is composed thereby allowing custom links to be inclu
 audit trail for a resource may be included along with the canonical self referential link.
 
 
+Adding Additional Links
+-----------------------
+
+Links may be used for anything to link to anywhere.  Some HATEOAS tutorials suggest using links to show other actions such as a POST.  
+To add more links to an entity as it is rendered use the ``renderEntity`` event in your Module.php file::
+
+    use Zend\EventManager\Event;
+    use Zend\EventManager\EventInterface;
+    use ZF\Hal\Link\Link;
+
+    public function onBootstrap(EventInterface $e)
+    {
+        $app = $e->getTarget();
+        $services = $app->getServiceManager();
+        $this->container = $services;
+        $sharedEvents = $services->get('SharedEventManager');
+        $sharedEvents->attach('ZF\Hal\Plugin\Hal', 'renderEntity', array($this, 'onRenderEntity'));
+    }
+
+    public function onRenderEntity(Event $e)
+    {
+        $entity = $e->getParam('entity');
+
+        switch (get_class($entity->getEntity())) {
+            case 'Db\Entity\Artist':
+                $link = new Link('home');
+                $link->setUrl('https://apiskeletons.com');
+                $entity->getLinks()->add($link);
+
+                break;
+            default:
+                break;
+        }
+    }
+
+
 Computed Data
 -------------
 
