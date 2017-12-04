@@ -42,6 +42,16 @@ First the configuration, done with a ConfigProvider
                 ],
             ];
         }
+        
+        public function getDependencyConfig()
+        {
+            return [
+                'factories' => [
+                    EventSubscriber\Doctrine\DoctrineEventSubscriberManager::class =>
+                        EventSubscriber\Doctrine\DoctrineEventSubscriberManagerFactory::class,
+                ],
+            ];
+        }        
         ...
     }
 
