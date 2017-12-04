@@ -22,7 +22,7 @@ As an example for an Artist resource these files full path will be
 
   <?php
   module/DbApi/src/DbApi/V1/Rest/Artist/ArtistCollection.php
-  module/DbApi/src/DbApi/V1/Rest/Artist/ArtistResource.php'
+  module/DbApi/src/DbApi/V1/Rest/Artist/ArtistResource.php
 
 There should never be a need to modify these files.  Let me repeat, these files are not intended to override the ancestor objects.  They
 exist here as part of the depenency injection strategy Doctrine in Apigility uses.  Again, **DO NOT** modify these files.
