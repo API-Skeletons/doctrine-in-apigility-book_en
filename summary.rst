@@ -61,9 +61,8 @@ security permission of the user the QueryBuilder, when ran, will produce SQL tha
 For instance, if a UserResource is secured by ACL to only USER roles but each user can only PATCH to their own entity the Query Provider
 may read
 
-.. code-block:: php
+.. highlight:: php
 
-    <?php
     final class UserPatch extends AbstractQueryProvider
     {
         public function createQuery(ResourceEvent $event, $entityClass, $parameters)
