@@ -20,3 +20,4 @@ a fully `Richardson Maturity Model Level 3 <https://martinfowler.com/articles/ri
     hydrators
     hateoas
     querybuilder
+    externalresources
