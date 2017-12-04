@@ -91,7 +91,7 @@ Hydrator Strategies
 
 A hydrator strategy may be attached to any field, association, or collection which is derived by hydrating an entity.
 `API-Skeletons/zf-doctrine-hydrator <https://github.com/API-Skeletons/zf-doctrine-hydrator>`_ has three hydration strategies and rather
-than create a long article about how to create your own strategies it is the recommendation of this boot that you only use one of
+than create a long article about how to create your own strategies it is the recommendation of this book that you only use one of
 these three strategies for your hydrated data.
 
 There is a pitfall to using strategies; especially when a strategy extracts a collection.  An entity which is a member of a collection
