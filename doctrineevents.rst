@@ -2,16 +2,16 @@ Doctrine Events
 ===============
 
 This purely Doctrine subject has a good reason to be here.  Often when a new entity is POSTed to a resource there will be default values
-you want to save to the new entity.  For this reason you should use Doctrine events to catch lifecycle events to an entity and 
+you want to save to the new entity.  For this reason you should use Doctrine events to catch lifecycle events to an entity and
 modify the entity as needed.
 
-If you were to create an API where you tried to use a Query Create Filter, for example, to add default data then if you ever needed to 
+If you were to create an API where you tried to use a Query Create Filter, for example, to add default data then if you ever needed to
 create the same entity within the application the same defaults would not be applied.  Doctrine events act globally in an application.
 You should use Doctrine events as often as needed.
 
-Within a Doctrine event you have access to the Object Manager.  This in turn has access to the Repositories 
-(see `API-Skeletons/zf-doctrine-repository <https://github.com/API-Skeletons/zf-doctrine-repository>`_) which may have access to plugins 
-if you use the referenced module, as you should.  
+Within a Doctrine event you have access to the Object Manager.  This in turn has access to the Repositories
+(see `API-Skeletons/zf-doctrine-repository <https://github.com/API-Skeletons/zf-doctrine-repository>`_) which may have access to plugins
+if you use the referenced module, as you should.
 
 
 Doctrine Event Subscriber Manager Factory pattern
@@ -42,7 +42,7 @@ First the configuration, done with a ConfigProvider
                 ],
             ];
         }
-        
+
         public function getDependencyConfig()
         {
             return [
@@ -51,7 +51,7 @@ First the configuration, done with a ConfigProvider
                         EventSubscriber\Doctrine\DoctrineEventSubscriberManagerFactory::class,
                 ],
             ];
-        }        
+        }
         ...
     }
 
@@ -232,3 +232,6 @@ Finally bootstrap the module to load all the event subscribers and subscribe the
   Authored by Tom H Anderson of `API Skeletons <https://apiskeletons.com>`_.
   All rights reserved.  :raw-html:`<form style="display: inline" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="WHR95HM3DMYAQ"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></form>`
   if you find this book useful.
+
+
+:raw-html: `<script async src="https://www.googletagmanager.com/gtag/js?id=UA-64198835-2"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-64198835-2');</script>`
