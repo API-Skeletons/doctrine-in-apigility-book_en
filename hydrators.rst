@@ -1,12 +1,3 @@
-.. role:: raw-html(raw)
-   :format: html
-
-.. note::
-  Authored by Tom H Anderson of `API Skeletons <https://apiskeletons.com>`_.
-  All rights reserved.  :raw-html:`<form style="display: inline" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="WHR95HM3DMYAQ"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></form>`
-  if you find this book useful.
-
-
 Hydrators
 =========
 
@@ -114,3 +105,12 @@ create your API resource through the Apigility UI then fetch an entity through t
 often as an empty class ``{}``.  For each of these empty classes, often they are collections, assign a hydrator strategy.  Don't try to
 over-do it; you don't need to return the entire database with each request; just make sure the requesting client can get to any data
 which is related to the resource.  It's ok if a client makes 2 or 3 requests to get all thier data.
+
+
+.. role:: raw-html(raw)
+   :format: html
+
+.. note::
+  Authored by Tom H Anderson of `API Skeletons <https://apiskeletons.com>`_.
+  All rights reserved.  :raw-html:`<form style="display: inline" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="WHR95HM3DMYAQ"><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></form>`
+  if you find this book useful.
