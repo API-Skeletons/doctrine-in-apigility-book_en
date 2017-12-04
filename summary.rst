@@ -16,12 +16,16 @@ is included here to give the developer a birds-eye view of the pattern.
 Files
 -----
 
-Doctrine in Apigility creates two files when a new resource is assigned to an API.  These are::
+Doctrine in Apigility creates two files when a new resource is assigned to an API.  These are
+
+.. code-block:: php
 
   [Resource]Collection.php
   [Resource]Resource.php
 
-As an example for an Artist resource these files full path will be::
+As an example for an Artist resource these files full path will be
+
+.. code-block:: php
 
   module/DbApi/src/DbApi/V1/Rest/Artist/ArtistCollection.php
   module/DbApi/src/DbApi/V1/Rest/Artist/ArtistResource.php'
@@ -55,7 +59,9 @@ is requesting.  By extending the QueryBuilder with filters and joins the query w
 security permission of the user the QueryBuilder, when ran, will produce SQL that adds new security to the resource.
 
 For instance, if a UserResource is secured by ACL to only USER roles but each user can only PATCH to their own entity the Query Provider
-may read::
+may read
+
+.. code-block:: php
 
     final class UserPatch extends AbstractQueryProvider
     {
@@ -77,7 +83,9 @@ Now when the QueryBuilder is ran inside the `DoctrineResource <https://github.co
 the id for the user passed to the patch will be appended to the QueryBuilder.  If the id does not belong to the current user then the
 QueryBuilder will return no results and a 404 will be thrown to the user trying to edit a record which is not theirs.
 
-More complicated examples **rely on your metadata being complete**.  If your metadata defines joins to and from every join (that is, to an inverse and to a owner entity for every relationship) you can add complicated joins to your Query Provider::
+More complicated examples **rely on your metadata being complete**.  If your metadata defines joins to and from every join (that is, to an inverse and to a owner entity for every relationship) you can add complicated joins to your Query Provider
+
+.. code-block:: php
 
     $queryBuilder
         ->innerJoin('row.performance', 'performance')
@@ -109,7 +117,9 @@ assigned to a resource.
 
 `phpro/zf-doctrine-hydration-module <https://github.com/phpro/zf-doctrine-hydration-module>`_ makes working with hydrators easy by
 moving each field which could be hydrated into Doctrine in Apigility's configuration file.  The only configuration we need to concern
-ourselves with is ``strategies`` and ``filters``::
+ourselves with is ``strategies`` and ``filters``
+
+.. code-block:: php
 
     'doctrine-hydrator' => array(
         'DbApi\\V1\\Rest\\Artist\\ArtistHydrator' => array(
@@ -134,7 +144,9 @@ ourselves with is ``strategies`` and ``filters``::
 Hydrator Filters
 ----------------
 
-Here is the ArtistDefault filter::
+Here is the ArtistDefault filter
+
+.. code-block:: php
 
     namespace DbApi\Hydrator\Filter;
 
@@ -195,7 +207,9 @@ An Example
 
 Finally here is an example created by applying the rules listed above and the details listed in this book.  You'll see this performance
 has an embedded artist as well as links to every place in the API a client may wish to go to next.  It is not the job of the API to
-decide where to go next.  The job of the API is to serve data and give directions for where a client may go::
+decide where to go next.  The job of the API is to serve data and give directions for where a client may go
+
+.. code-block:: json
 
     {
       "performanceDate": "1995-02-21",
