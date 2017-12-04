@@ -1,7 +1,7 @@
 QueryBuilder
 ============
 
-There is a library just for turning $_GET requests into QueryBuilder paramters for Doctrine.  This library was written about the same time
+There is a library just for turning $_GET requests into QueryBuilder parameters for Doctrine.  This library was written about the same time
 as Doctrine in Apigility and it is intended to be used together.
 
 `You can find zfcampus/zf-doctrine-querybuilder here<https://github.com/zfcampus/zf-doctrine-querybuilder>`_.  Please read the Philosopy 
