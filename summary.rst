@@ -63,6 +63,7 @@ may read
 
 .. code-block:: php
 
+    <?php
     final class UserPatch extends AbstractQueryProvider
     {
         public function createQuery(ResourceEvent $event, $entityClass, $parameters)
