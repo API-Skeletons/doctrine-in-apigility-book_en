@@ -1,4 +1,4 @@
-    Created by `API Skeletons <https://apiskeletons.com>`_ All rights reserved.
+.. note:: Authored by `API Skeletons <https://apiskeletons.com>`_ All rights reserved.
 
 Doctrine in Apigility Book
 ==========================
