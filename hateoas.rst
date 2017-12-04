@@ -1,5 +1,5 @@
-HATEOAS
-=======
+HATEOAS and Hypertext Application Language
+==========================================
 
 **Hypertext As The Engine Of Application State**.  This is the lofty goal an API developer should aspire to.  By embedding URLs in your
 response a client application doesn't need to know details about the API such as how to paginate or where to find a referenced
