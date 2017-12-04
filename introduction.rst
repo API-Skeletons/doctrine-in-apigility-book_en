@@ -20,7 +20,8 @@ When should you use Doctrine in Apigility?
 
 When you have a Doctrine project with properly mapped associations (metadata) between entities Doctrine in Apigility
 will give you a powerful head-start toward building an API.  Correct metadata is absolutly core to building an API
-with this tool.  To help design your ORM `Skipper <https://skipper18.com>`_ is strongly recommended.  See `ORM Modeling with Skipper <skipper>`_
+with this tool.  To help design your ORM `Skipper <https://skipper18.com>`_ is strongly recommended.  
+See `Entity Relationship Diagramming with Skipper <skipper>`_
 
 You can use Doctrine in Apigility to serve pieces of your schema by filtering with hydrator strategies or you can
 serve your entire schema in an "Open-schema API" where relationships between entities are fully explored in the HAL
