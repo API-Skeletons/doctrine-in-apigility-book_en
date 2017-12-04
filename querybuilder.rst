@@ -47,7 +47,13 @@ We'll need a common factory for all Query Providers to implement zf-doctrine-que
 
 We're including the filter and order by manager from zf-doctrine-querybuilder in our Query Providers.  Additionally the Object Manager
 is set (note for this class the object manager alias is static) and the authentication from zf-mvc-auth is set.  This gives access to
-the currently authenticated user.  Each Query Provider created through this abstract factory must be a AbstractQueryProvider and here
+the currently authenticated user.  
+
+
+Abstract Query Provider
+-----------------------
+
+Each Query Provider created through this abstract factory must be a AbstractQueryProvider and here
 is that code::
 
     namespace DbApi\Query\Provider;
