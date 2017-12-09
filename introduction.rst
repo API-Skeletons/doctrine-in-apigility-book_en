@@ -36,7 +36,7 @@ What makes Doctrine in Apigility different?
 
 Because Doctrine is an object relational mapper the relationships between entities are part of the Doctrine metadata.
 So when a Doctrine entity is `extracted with a hydrator <hydrators.html>`_ the relationships are pulled from the entity too and included in the
-`HAL <hateoas>`_ response as ``_embedded`` data and naturally create a `HATEOAS <hateoas>`_ response.
+HAL response as ``_embedded`` data and naturally create a `HATEOAS <hateoas>`_ response.
 By using hydration strategies you may include just a
 link to the canonical resource or embed the entire resource and in turn embed its resources.
 
@@ -83,7 +83,7 @@ Each album entry has an embedded ``artist`` but this would cause a cyclic refere
 used to just give a link to the ``artist`` from within an ``album``.  This is common when using the ``CollectionExtract`` hydrator.
 
 Within each API response when using Doctrine in Apigility there will never be a dead-end.  Any reference to an entity or collection
-will be handled by a hydrator thereby making the API fully implement `HATEOAS <hateoas>`_.
+will be handled by a hydrator thereby making the API fully implement HATEOAS.
 
 
 .. role:: raw-html(raw)
