@@ -35,7 +35,7 @@ What makes Doctrine in Apigility different?
 -------------------------------------------
 
 Because Doctrine is an object relational mapper the relationships between entities are part of the Doctrine metadata.
-So when a Doctrine entity is `extracted with a hydrator <hydration>`_ the relationships are pulled from the entity too and included in the
+So when a Doctrine entity is `extracted with a hydrator <hydrators>`_ the relationships are pulled from the entity too and included in the
 `HAL <hypertext application language>`_ response as ``_embedded`` data and naturally create a `HATEOAS <hateoas>`_ response.
 By using hydration strategies you may include just a
 link to the canonical resource or embed the entire resource and in turn embed its resources.
