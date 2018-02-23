@@ -71,7 +71,28 @@ configuration.  Here is an example file
 Export Metadata and Create Entities
 -----------------------------------
 
-For a brand new ERD export the XML to the ``module/Db/config/orm`` directory then run::
+For a brand new ERD export the XML to the ``module/Db/config/orm`` directory and add the driver config to
+your module.config.php file::
+
+    'doctrine' => [
+        'driver' => [
+            'db_driver' => [
+                'class' => 'Doctrine\\ORM\\Mapping\\Driver\\XmlDriver',
+                'paths' => [
+                    __DIR__ . '/orm',
+                ],
+            ],
+            'orm_default' => [
+                'class' => 'Doctrine\\ORM\\Mapping\\Driver\\DriverChain',
+                'drivers' => [
+                    'Db\\Entity' => 'db_driver',
+                ],
+            ],
+        ],
+    ],
+
+
+then run::
 
   php public/index.php orm:generate-entities module/Db/src
 
