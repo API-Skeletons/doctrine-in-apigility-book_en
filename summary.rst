@@ -41,7 +41,7 @@ ACL Security
 Doctrine in Apigility expects you to implement the Authorization created with
 `zfcampus/zf-mvc-auth <https://github.com/zfcampus/zf-mvc-auth>`_ for your project.  This probably means implementing ACL in your
 application and assigning roles to the differnet HTTP verbs each role can access.  For instance a DELETE verb may only be available
-to an administrator.  This is explained in detail in `Authorization <authorization>`_.
+to an administrator.  
 
 
 Query Provider Security
