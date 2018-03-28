@@ -28,7 +28,7 @@ serve your entire schema in an "Open-schema API" where relationships between ent
 ``_embedded`` data.
 
 If you're familiar with the benefits of ORM and will use it in your project and you require a fully-fledged
-API engine than this API strategy may what you're looking for.
+API engine then this API strategy may what you're looking for.
 
 
 What makes Doctrine in Apigility different?
