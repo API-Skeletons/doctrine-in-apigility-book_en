@@ -292,8 +292,8 @@ decide where to go next.  The job of the API is to serve data and give direction
             },
             "user": {
               "username": "toma",
-              "email": "toma@etree.org",
-              "name": "Tom Anderson",
+              "email": "tom.h.anderson@gmail.com",
+              "name": "Tom H Anderson",
               "createdAt": {
                 "date": "1999-09-15 00:00:00.000000",
                 "timezone_type": 3,
