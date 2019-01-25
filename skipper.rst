@@ -10,7 +10,7 @@ not realized.  Skipper is one of these overlooked tools.
 
 Using Skipper every relationship in your ORM can be visualized and all the metadata can be handled without touching
 the code.  Take for instance you want to add a field to an entity:  Using Skipper you will visually add the new field,
-export the XML metadata (note:  always us XML metadata), run ``orm:generate-entities`` then run ``orm:schema-tool:update --dump-sql``
+export the XML metadata (note:  always use XML metadata), run ``orm:generate-entities`` then run ``orm:schema-tool:update --dump-sql``
 to get the SQL you must add to your `migrations <http://docs.doctrine-project.org/projects/doctrine-migrations/en/latest/toc.html>`_.
 
 The visual diagram Skipper provides you enables your entire team from CEO to JS Programmer to understand the data model of the application.
